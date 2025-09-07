@@ -21,6 +21,7 @@
     "symfony/messenger": "7.2.*",
     "symfony/runtime": "7.2.*",
     "symfony/uid": "7.2.*",
+    "symfony/ux-react": "^2.30",
     "symfony/yaml": "7.2.*"
   },
   "config": {
