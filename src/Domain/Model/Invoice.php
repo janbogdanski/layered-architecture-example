@@ -13,7 +13,7 @@ final class Invoice {
 
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'uuid', unique: true)]
-    private readonly Uuid $id;
+    public readonly Uuid $id;
 
 
     #[ORM\Column(name: 'status', enumType: Status::class)]
@@ -38,5 +38,6 @@ final class Invoice {
     {
         $this->id = Uuid::v4();
         $this->status = Status::DRAFT;
+        $this->totalPrice = 0;
     }
 }
