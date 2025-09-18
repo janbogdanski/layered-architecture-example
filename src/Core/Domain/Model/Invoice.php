@@ -42,6 +42,9 @@ final class Invoice {
         $this->status = Status::DRAFT;
         $this->totalPrice = 0;
         $this->lines = new ArrayCollection();
+
+        Assertion::email($this->customerEmail, 'Invalid email');
+        Assertion::notEmpty($this->customerName, 'Customer name is required');
     }
 
     public function addLine(InvoiceLine $line): void
@@ -56,7 +59,7 @@ final class Invoice {
         Assertion::eq($this->status, Status::DRAFT, 'Invoice already sent');
         Assertion::minCount($this->lines, 1, 'Invoice must have at least one line');
         //in requirements there was also check for quantity and price to be greater than 0 - it is checked on invoice line level before adding to invoice
-
+        //for more sophisticated validations I have been using >policies< injected here and checked here
         $this->status = Status::SENDING;
     }
 

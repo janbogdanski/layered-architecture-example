@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Domain\Model;
 
+use Assert\Assertion;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
@@ -33,6 +34,10 @@ final class InvoiceLine {
     {
         $this->id = Uuid::v4();
         $this->totalPrice = $this->quantity * $this->price;
+
+        Assertion::notEmpty($this->productName, 'Product name is required');;
+        Assertion::greaterThan($this->quantity, 0, 'Quantity must be greater than 0');
+        Assertion::greaterThan($this->price, 0, 'Unit price must be greater than 0');
     }
 
     public function setInvoice(Invoice $invoice): void

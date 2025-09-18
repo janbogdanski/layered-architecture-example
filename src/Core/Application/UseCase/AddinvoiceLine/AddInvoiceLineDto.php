@@ -14,8 +14,7 @@ final readonly class AddInvoiceLineDto
         public int $quantity,
     )
     {
-        Assertion::greaterThan($this->quantity, 0, 'Quantity must be greater than 0');
-        Assertion::greaterThan($this->unitPrice, 0, 'Unit price must be greater than 0');
+
     }
 
 }

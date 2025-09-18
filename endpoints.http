@@ -1,0 +1,28 @@
+GET localhost/invoices/d8a3c996-0f6c-460d-adbc-fb3664a064d3
+
+###
+POST localhost/invoices
+Content-Type: application/json
+
+{
+  "customerName": "customer",
+  "customerEmail": "customer@email.com"
+}
+
+###
+
+POST localhost/invoices/d39502b9-da40-422f-aaba-05f9a877943e/lines
+Content-Type: application/json
+
+{
+  "productName": "aa",
+  "quantity": 3,
+  "unitPrice": 11
+}
+
+###
+PUT localhost/invoices/d39502b9-da40-422f-aaba-05f9a877943e/process
+
+###
+
+#GET localhost/notification/hook/delivered/c08c05c5-2223-4032-98f2-37390390bb3f
