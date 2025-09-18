@@ -8,20 +8,20 @@ use App\Core\Application\View\GetInvoiceLineView;
 use App\Core\Application\View\GetInvoiceView;
 use App\Core\Domain\Model\InvoiceLine;
 use App\Core\Infrastructure\Persistence\InvoiceRepository;
+use App\Core\Infrastructure\Persistence\InvoiceRepositoryInterface;
 use Assert\Assertion;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class GetInvoiceQuery implements GetInvoiceQueryPort
 {
     public function __construct(
-        private InvoiceRepository $invoiceRepository,
+        private InvoiceRepositoryInterface $invoiceRepository,
     )
     {
     }
 
     public function execute(Uuid $id): GetInvoiceView
     {
-
         Assertion::uuid($id, 'Invalid invoice id format');
 
         $invoice = $this->invoiceRepository->find($id);

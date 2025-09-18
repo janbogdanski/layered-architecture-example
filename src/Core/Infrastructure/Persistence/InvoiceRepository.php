@@ -10,7 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\Uid\Uuid;
 
-final readonly class InvoiceRepository
+final readonly class InvoiceRepository implements InvoiceRepositoryInterface
+
 {
     private ObjectRepository $repository;
 
