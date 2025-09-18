@@ -8,6 +8,7 @@ use App\Domain\Model\Employee\Employee;
 use App\Domain\Model\Invoice;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
+use Symfony\Component\Uid\Uuid;
 
 final readonly class InvoiceRepository
 {
@@ -25,7 +26,7 @@ final readonly class InvoiceRepository
         $this->entityManager->flush();
     }
 
-    public function find(string $id): ?Invoice
+    public function find(Uuid $id): ?Invoice
     {
         return $this->repository->find($id);
     }

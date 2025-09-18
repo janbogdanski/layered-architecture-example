@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\AddinvoiceLine;
 
+use Symfony\Component\Uid\Uuid;
+
 interface AddInvoiceLineUseCasePort
 {
-    public function execute(string $id, AddInvoiceLineDto $dto): void;
+    public function execute(Uuid $id, AddInvoiceLineDto $dto): void;
 
 }

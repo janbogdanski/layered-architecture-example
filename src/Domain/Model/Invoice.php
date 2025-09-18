@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
+use Assert\Assertion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -49,4 +50,14 @@ final class Invoice {
         $line->setInvoice($this);
         $this->totalPrice += $line->totalPrice;
     }
+
+    public function send(): void
+    {
+        Assertion::eq($this->status, Status::DRAFT);
+        Assertion::minCount($this->lines, 1);
+        //in requirements there was also check for quantity and price to be greater than 0 - it is checked on invoice line level before adding to invoice
+
+        $this->status = Status::SENDING;
+    }
+
 }

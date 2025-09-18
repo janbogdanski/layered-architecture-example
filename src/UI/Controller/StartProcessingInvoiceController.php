@@ -9,6 +9,7 @@ use App\Application\UseCase\AddInvoice\AddInvoiceDto;
 use App\Application\UseCase\AddInvoice\AddInvoicePort;
 use App\Application\UseCase\AddinvoiceLine\AddInvoiceLineDto;
 use App\Application\UseCase\AddinvoiceLine\AddInvoiceLineUseCasePort;
+use App\Application\UseCase\StartProcessingInvoice\StartProcessingUseCasePort;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,23 +18,22 @@ use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Uid\Uuid;
 
-final readonly class AddInvoiceLineController
+final readonly class StartProcessingInvoiceController
 {
 
     public function __construct(
-        private AddInvoiceLineUseCasePort $addInvoiceLine,
+        private StartProcessingUseCasePort $startProcessingUseCase,
     )
     {
     }
 
-    #[Route('/invoices/{id}/lines', name: 'add_invoice_line', methods: ['POST'], format: 'json')]
+    #[Route('/invoices/{id}/process', name: 'start_processing_invoice', methods: ['PUT'], format: 'json')]
     public function __invoke(
         Request $request,
         Uuid $id,
-        #[MapRequestPayload] AddInvoiceLineDto $dto,
     ): Response
     {
-        $this->addInvoiceLine->execute($id, $dto);
+        $this->startProcessingUseCase->execute($id);
 
         return new Response('', Response::HTTP_NO_CONTENT);
     }
