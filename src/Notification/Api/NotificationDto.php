@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Application\UseCase\SendNotification;
+namespace App\Notification\Api;
 
 use Symfony\Component\Uid\Uuid;
 

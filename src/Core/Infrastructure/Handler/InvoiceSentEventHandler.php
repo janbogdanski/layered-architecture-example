@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Core\Infrastructure\Handler;
 
-use App\Core\Application\UseCase\SendNotification\NotificationDto;
-use App\Core\Application\UseCase\SendNotification\NotificationFacadePort;
 use App\Core\Domain\Event\InvoiceSent;
 use App\Core\Infrastructure\Persistence\InvoiceRepository;
+use App\Notification\Api\NotificationDto;
+use App\Notification\Api\NotificationFacadeInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
 final readonly class InvoiceSentEventHandler
 {
     public function __construct(
-        private NotificationFacadePort $notificationFacade,
+        private NotificationFacadeInterface $notificationFacade,
         private InvoiceRepository $invoiceRepository,
     )
     {
@@ -24,7 +24,7 @@ final readonly class InvoiceSentEventHandler
     {
         $invoice = $this->invoiceRepository->find($event->invoiceId);
 
-        $this->notificationFacade->send(new NotificationDto(
+        $this->notificationFacade->notify(new NotificationDto(
             $invoice->id,
             $invoice->customerEmail,
             'Your invoice has been sent.',
