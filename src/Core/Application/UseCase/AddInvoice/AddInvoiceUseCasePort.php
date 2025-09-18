@@ -6,7 +6,7 @@ namespace App\Core\Application\UseCase\AddInvoice;
 
 use App\Core\Application\View\AddInvoiceView;
 
-interface AddInvoicePort
+interface AddInvoiceUseCasePort
 {
     public function execute(AddInvoiceDto $dto): AddInvoiceView;
 

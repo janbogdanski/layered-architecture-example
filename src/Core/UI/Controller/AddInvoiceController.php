@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\UI\Controller;
 
 use App\Core\Application\UseCase\AddInvoice\AddInvoiceDto;
-use App\Core\Application\UseCase\AddInvoice\AddInvoicePort;
+use App\Core\Application\UseCase\AddInvoice\AddInvoiceUseCasePort;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ final readonly class AddInvoiceController
 {
 
     public function __construct(
-        private AddInvoicePort $addInvoice,
+        private AddInvoiceUseCasePort $addInvoice,
     )
     {
     }

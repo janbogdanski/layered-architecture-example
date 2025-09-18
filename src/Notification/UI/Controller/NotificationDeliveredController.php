@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Notification\UI\Controller;
 
 use App\Core\Application\UseCase\AddInvoice\AddInvoiceDto;
-use App\Core\Application\UseCase\AddInvoice\AddInvoicePort;
+use App\Core\Application\UseCase\AddInvoice\AddInvoiceUseCasePort;
 use App\Notification\Application\UseCase\NotificationDeliveredUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

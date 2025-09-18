@@ -7,7 +7,7 @@ namespace App\Core\Application\UseCase\AddInvoice;
 use App\Core\Application\View\AddInvoiceView;
 use App\Core\Infrastructure\Persistence\InvoiceRepository;
 
-final readonly class AddInvoice implements AddInvoicePort
+final readonly class AddInvoiceUseCase implements AddInvoiceUseCasePort
 {
     public function __construct(
         private InvoiceRepository $invoiceRepository,
