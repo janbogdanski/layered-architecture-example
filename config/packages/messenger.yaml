@@ -12,7 +12,7 @@ framework:
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
-          App\Domain\Event\InvoiceSent: sync
+          App\Core\Domain\Event\InvoiceSent: sync
 
 # when@test:
 #    framework:
