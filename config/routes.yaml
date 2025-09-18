@@ -3,3 +3,9 @@ controllers:
         path: ../src/Core/UI/Controller/
         namespace: App\Core\UI\Controller
     type: attribute
+
+notification:
+    resource:
+        path: ../src/Notification/UI/Controller/
+        namespace: App\Notification\UI\Controller
+    type: attribute

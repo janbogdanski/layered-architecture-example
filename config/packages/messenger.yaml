@@ -13,6 +13,7 @@ framework:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
           App\Core\Domain\Event\InvoiceSent: sync
+          App\Notification\Api\Event\ResourceDelivered: sync
 
 # when@test:
 #    framework:

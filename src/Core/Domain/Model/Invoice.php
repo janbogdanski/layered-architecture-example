@@ -60,4 +60,11 @@ final class Invoice {
         $this->status = Status::SENDING;
     }
 
+    public function sentToClient(): void
+    {
+        Assertion::eq($this->status, Status::SENDING);
+
+        $this->status = Status::SENT_TO_CLIENT;
+    }
+
 }
