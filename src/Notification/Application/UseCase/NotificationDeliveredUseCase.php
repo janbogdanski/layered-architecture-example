@@ -20,7 +20,7 @@ final readonly class NotificationDeliveredUseCase
 
     public function execute(string $reference): void
     {
-        Assertion::uuid($reference);
+        Assertion::uuid($reference, 'Invalid reference format');
         $this->bus->dispatch(new ResourceDelivered(Uuid::fromString($reference)));
     }
 }

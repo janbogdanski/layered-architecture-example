@@ -13,8 +13,8 @@ final readonly class AddInvoiceDto
         public string $customerEmail,
     )
     {
-        Assertion::email($this->customerEmail);
-        Assertion::notEmpty($this->customerName);
+        Assertion::email($this->customerEmail, 'Invalid email');
+        Assertion::notEmpty($this->customerName, 'Customer name is required');
     }
 
 }

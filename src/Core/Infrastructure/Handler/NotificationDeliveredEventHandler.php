@@ -25,7 +25,7 @@ final readonly class NotificationDeliveredEventHandler
     {
         $invoice = $this->invoiceRepository->find($event->resourceId);
 
-        Assertion::notNull($invoice);
+        Assertion::notNull($invoice, 'Invoice not found');
 
         $invoice->sentToClient();
 

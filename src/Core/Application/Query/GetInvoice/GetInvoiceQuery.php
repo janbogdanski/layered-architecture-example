@@ -22,10 +22,11 @@ final readonly class GetInvoiceQuery implements GetInvoiceQueryPort
     public function execute(Uuid $id): GetInvoiceView
     {
 
-        Assertion::uuid($id);
+        Assertion::uuid($id, 'Invalid invoice id format');
 
         $invoice = $this->invoiceRepository->find($id);
 
+        Assertion::notNull($invoice, 'Invoice not found');
 
         $lines = array_map(function (InvoiceLine $line) {
             return new GetInvoiceLineView(

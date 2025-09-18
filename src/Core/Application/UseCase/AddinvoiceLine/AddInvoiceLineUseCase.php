@@ -18,10 +18,10 @@ final readonly class AddInvoiceLineUseCase implements AddInvoiceLineUseCasePort
 
     public function execute(Uuid $id, AddInvoiceLineDto $dto): void
     {
-        Assertion::uuid($id);
+        Assertion::uuid($id, 'Invalid invoice id format');
         $invoice = $this->invoiceRepository->find($id);
 
-        Assertion::notNull($invoice);
+        Assertion::notNull($invoice, 'Invoice not found');
 
         $invoiceLine = LineFactory::create($dto);
 

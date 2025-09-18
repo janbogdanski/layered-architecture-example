@@ -53,8 +53,8 @@ final class Invoice {
 
     public function send(): void
     {
-        Assertion::eq($this->status, Status::DRAFT);
-        Assertion::minCount($this->lines, 1);
+        Assertion::eq($this->status, Status::DRAFT, 'Invoice already sent');
+        Assertion::minCount($this->lines, 1, 'Invoice must have at least one line');
         //in requirements there was also check for quantity and price to be greater than 0 - it is checked on invoice line level before adding to invoice
 
         $this->status = Status::SENDING;
@@ -62,7 +62,7 @@ final class Invoice {
 
     public function sentToClient(): void
     {
-        Assertion::eq($this->status, Status::SENDING);
+        Assertion::eq($this->status, Status::SENDING, 'Invoice is not sending');
 
         $this->status = Status::SENT_TO_CLIENT;
     }
