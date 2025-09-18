@@ -7,7 +7,6 @@ namespace App\UI\Controller;
 use App\Application\Query\GetInvoice\GetInvoiceQueryPort;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 
 final readonly class GetInvoiceController {

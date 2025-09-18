@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Query\GetInvoice;
 
+use App\Application\View\GetInvoiceLineView;
 use App\Application\View\GetInvoiceView;
+use App\Domain\Model\InvoiceLine;
 use App\Infrastructure\Persistence\InvoiceRepository;
 use Assert\Assertion;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,6 +28,23 @@ final readonly class GetInvoiceQuery implements GetInvoiceQueryPort
         $invoice = $this->invoiceRepository->find($id);
 
 
-        return new GetInvoiceView(id: $invoice->id);
+        $lines = array_map(function (InvoiceLine $line) {
+            return new GetInvoiceLineView(
+                $line->productName,
+                $line->quantity,
+                $line->price,
+                $line->totalPrice,
+            );
+        }, $invoice->lines->toArray());
+
+        return new GetInvoiceView(
+            id: $invoice->id,
+            status: $invoice->status,
+            customerName: $invoice->customerName,
+            customerEmail: $invoice->customerEmail,
+            total: $invoice->totalPrice,
+            lines: $lines
+
+        );
     }
 }
